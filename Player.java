@@ -21,9 +21,15 @@ public class Player {
 	}
 	
 	public int makeBet() {
-		
-		bet=1;
-		return bet;
+		if(this.chips<1){
+			
+			bet=0;
+			return bet;
+		}
+		else{
+			bet=1;
+			return bet;
+		}
 	}
 	
 	public void setOneRoundCard(ArrayList<Card> cards) {
@@ -36,7 +42,6 @@ public class Player {
 			card.printCard(card.getSuit(), card.getRank());
 			
 		}
-		System.out.println("............................. ");
 	}
 	
 	
@@ -67,9 +72,19 @@ public class Player {
 			if(card.getRank()==13||card.getRank()==12||card.getRank()==11){
 				sum=sum+10;
 			}
-			else {
-				sum=sum+card.getRank();
+			else if(card.getRank()==1){
+				if(sum+11>21){
+					sum=sum+1;
+				}
+				else{
+					sum=sum+11;
+				}
+				
 			}
+			else {
+				sum=sum+card.getRank();	
+			}
+			
 		}
 		return sum;
 		
